@@ -13,7 +13,6 @@ body {
   text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 }
-
 label {
   font-weight: 700;
 }
@@ -64,4 +63,8 @@ div:focus {
 // main-container global css
 .app-container {
   padding: 20px;
+}
+@font-face {
+  font-family: "DC";
+  src: url("../assets/font/华文中宋.ttf");
 }

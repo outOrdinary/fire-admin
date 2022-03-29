@@ -8,7 +8,7 @@ import '@/styles/index.scss' // global css
 
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import locale from 'element-ui/lib/locale/lang/en' // lang i18n
+import locale from 'element-ui/lib/locale/lang/zh-CN' // lang i18n
 import './styles/element-variables.scss'
 
 import './icons' // icon
