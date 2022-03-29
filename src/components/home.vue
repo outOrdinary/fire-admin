@@ -1,10 +1,7 @@
 <template>
   <div class="home">
     <div class="homeTop">
-      <el-image
-      class="imageLogo"
-      :src="require('@/assets/img/logo.jpeg')"
-      fit="contain"></el-image>
+      <el-image class="imageLogo" :src="require('@/assets/img/logo.jpeg')" fit="contain"></el-image>
       <div class="homeTopText">
         <div>消防执法</div>
         <div>营商环境监督系统</div>
@@ -14,10 +11,9 @@
       <div style="margin-bottom:0.5rem;">尊敬的先生/女士：您好</div>
       <div style="text-indent:2rem;">为不断优化消防执法营商环境，树立清正廉洁执法形象，助力鞍山经济建设发展，请您对本次消防执法情况进行公正客观的评价，您的意见将直接由鞍山市消防救援支队纪委受理，我们将严格保密，请您积极参与。</div>
       <div style="text-align: center;">
-        <el-button class="homeButton" size="small">开始评价<el-image
-      style="width:20px;color: #accce3;"
-      :src="require('@/assets/img/right.png')"
-      fit="contain"></el-image></el-button>
+        <el-button class="homeButton">开始评价
+          <svg-icon style="font-size:1rem;" icon-class="threeRight"></svg-icon>
+        </el-button>
       </div>
     </div>
   </div>
@@ -55,11 +51,11 @@ export default {
   width: 100%;
   height: 50%;
   text-align: left;
-  font-size:1rem;
-  padding:2rem;
+  font-size: 1rem;
+  padding: 2rem;
   color: #accce3;
-  line-height:1.7;
-  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Arial,sans-serif;
+  line-height: 1.7;
+  font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 }
 .imageLogo {
   width: 12rem;
@@ -80,7 +76,9 @@ export default {
   background-color: #15417e;
   color: #accce3;
   border-color: #6b7479;
-  border-radius: 5px;
+  border-radius: 3px;
   margin: 2rem auto;
+  padding: 0.4rem 0.6rem 0.4rem 0.9rem;
+  font-size: 1rem;
 }
 </style>
