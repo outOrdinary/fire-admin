@@ -30,7 +30,12 @@ export default {
     }
   },
   methods: {
-    homeButtonClick () {
+    homeButtonClick (event) {
+      let target = event.target
+      if (target.nodeName === 'I' || target.nodeName === 'SPAN') {
+        target = event.target.parentNode
+      }
+      target.blur()
       this.$router.push('/service')
     }
   }
@@ -49,7 +54,7 @@ export default {
   height: 50%;
   color: #efd924;
   font-size: 2.1rem;
-  font-family: DC;
+  font-family: SourceHanSerifCN-Bold, Microsoft YaHei;
   letter-spacing: -1px;
 }
 .homeBottom {

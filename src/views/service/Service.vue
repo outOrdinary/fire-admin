@@ -66,7 +66,7 @@
               <div class="serviceFormLabelEng" style="background-color: #dc2418;">LAW ENFORCEMENT CONTENT</div>
             </div>
             <el-select v-model="record.context" size="mini" placeholder="选择执法内容" style="width:100%;">
-              <el-option v-for="item in companyList" :key="item" :label="item" :value="item">
+              <el-option v-for="item in contextList" :key="item" :label="item" :value="item">
               </el-option>
             </el-select>
           </el-form-item>
@@ -78,10 +78,10 @@
         </div>
         <div class='serviceEvaluation'>THE FIRE RESCUE</div>
         <div class="serviceEvaluationButton">
-          <el-button type="primary" circle class="serviceEvaluationButtonBlue">好</el-button>
-          <el-button type="primary" circle class="serviceEvaluationButtonBlue">较好</el-button>
-          <el-button type="primary" circle class="serviceEvaluationButtonRed">一般</el-button>
-          <el-button type="primary" circle class="serviceEvaluationButtonRed">差</el-button>
+          <el-button type="primary" @click="serverEvaluationClick" circle class="serviceEvaluationButtonBlue">好</el-button>
+          <el-button type="primary" @click="serverEvaluationClick" circle class="serviceEvaluationButtonBlue">较好</el-button>
+          <el-button type="primary" @click="serverEvaluationClick" circle class="serviceEvaluationButtonRed">一般</el-button>
+          <el-button type="primary" @click="serverEvaluationClick" circle class="serviceEvaluationButtonRed">差</el-button>
         </div>
         <div class="serviceEvaluationContent">总体评价分为“好、较好、一般、差”四个档次，如填选“好、较好”档，即完成此次评价：如填选“一般、差”档，需对执法情况进行进一步问卷调查。</div>
       </el-scrollbar>
@@ -118,7 +118,16 @@ export default {
         '4': ['刘旭', '白博'],
         '5': ['王德阳', '王喆']
       },
-      contextList: []
+      contextList: ['行政许可', '行政处罚', '火灾调查', '监督检查']
+    }
+  },
+  methods: {
+    serverEvaluationClick (event) {
+      let target = event.target
+      if (target.nodeName === 'I' || target.nodeName === 'SPAN') {
+        target = event.target.parentNode
+      }
+      target.blur()
     }
   }
 }
@@ -151,7 +160,7 @@ export default {
 .serviceTitle {
   color: #dc2418;
   font-size: 2rem;
-  font-family: DC;
+  font-family: SourceHanSerifCN-Bold;
   text-indent: 0.2rem;
   letter-spacing: 0.2rem;
 }
@@ -207,7 +216,7 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: DC;
+  font-family: SourceHanSerifCN-Bold;
   width: 100%;
   margin-top: 3%;
 }
@@ -217,7 +226,7 @@ export default {
   border: 3px solid #dc2418;
   background-color: #194fa1;
   font-size: 1.5rem;
-  padding: 0px;
+  padding: 0px !important;
 }
 .serviceEvaluationButtonBlue {
   width: 65px;
@@ -225,7 +234,7 @@ export default {
   border: 3px solid #194fa1;
   background-color: #dc2418;
   font-size: 1.5rem;
-  padding: 0px;
+  padding: 0px !important;
 }
 .serviceEvaluationContent {
   margin-top: 3%;
@@ -237,23 +246,23 @@ export default {
 }
 </style>
 <style lang="scss">
-.el-form-item {
-  margin-bottom: 2px;
-}
-input::placeholder {
-  /* Firefox, Chrome, Opera */
-  letter-spacing: 0.1rem;
-  text-align: right;
-  color: #797979;
-}
-.el-input__prefix {
-  display: none;
-}
-.el-input--prefix .el-input__inner {
-  padding-left: 15px;
-}
-.el-input__inner {
-  background-color: #edeeee;
-  border: 1px solid #a2a3a3;
-}
+// .el-form-item {
+//   margin-bottom: 2px;
+// }
+// input::placeholder {
+//   /* Firefox, Chrome, Opera */
+//   letter-spacing: 0.1rem;
+//   text-align: right;
+//   color: #797979;
+// }
+// .el-input__prefix {
+//   display: none;
+// }
+// .el-input--prefix .el-input__inner {
+//   padding-left: 15px;
+// }
+// .el-input__inner {
+//   background-color: #edeeee;
+//   border: 1px solid #a2a3a3;
+// }
 </style>
