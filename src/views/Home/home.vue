@@ -51,16 +51,16 @@ export default {
 .homeTop {
   background-color: #dc2418;
   width: 100%;
-  height: 50%;
+  height: 50vh;
   color: #efd924;
   font-size: 2.1rem;
-  font-family: SourceHanSerifCN-Bold, Microsoft YaHei;
+  font-family: Source-Han-Serif-CN-Bold, Microsoft YaHei;
   letter-spacing: -1px;
 }
 .homeBottom {
   background-color: #194fa1;
   width: 100%;
-  height: 50%;
+  height: 50vh;
   text-align: left;
   font-size: 1rem;
   padding: 2.7rem;

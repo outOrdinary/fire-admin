@@ -160,7 +160,7 @@ export default {
 .serviceTitle {
   color: #dc2418;
   font-size: 2rem;
-  font-family: SourceHanSerifCN-Bold;
+  font-family: Source-Han-Serif-CN-Bold;
   text-indent: 0.2rem;
   letter-spacing: 0.2rem;
 }
@@ -176,7 +176,6 @@ export default {
   font-weight: 600;
 }
 .serviceFormLabel {
-  font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
   color: #fff;
 }
 .serviceFormLabelZh {
@@ -216,7 +215,7 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: SourceHanSerifCN-Bold;
+  font-family: Source-Han-Serif-CN-Bold;
   width: 100%;
   margin-top: 3%;
 }
@@ -241,7 +240,6 @@ export default {
   font-size: 0.7rem;
   padding: 0 2rem;
   text-indent: 1.8rem;
-  font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
   line-height: 1.8;
 }
 </style>
