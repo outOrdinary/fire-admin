@@ -38,7 +38,8 @@ exports.cssLoaders = function (options) {
       loaders.push({
         loader: loader + '-loader',
         options: Object.assign({}, loaderOptions, {
-          sourceMap: options.sourceMap
+          sourceMap: options.sourceMap,
+          javascriptEnabled: true
         })
       })
     }
@@ -60,7 +61,12 @@ exports.cssLoaders = function (options) {
   return {
     css: generateLoaders(),
     postcss: generateLoaders(),
-    less: generateLoaders('less'),
+    // less: generateLoaders('less'),
+    less: generateLoaders('less', {
+      modifyVars: {
+        'hack': `true; @import "${path.join(__dirname, '../src/styles/vant-ui.less')}";`
+      }
+    }),
     sass: generateLoaders('sass', { indentedSyntax: true }),
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
