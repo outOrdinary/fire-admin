@@ -38,6 +38,26 @@ export default new Router({
       path: '/service',
       name: 'Service',
       component: resolve => require(['@/views/service/Service'], resolve)
+    },
+    {
+      path: '/licensing',
+      name: 'Licensing',
+      component: resolve => require(['@/views/evaluate/Licensing'], resolve)
+    },
+    {
+      path: '/punishment',
+      name: 'Punishment',
+      component: resolve => require(['@/views/evaluate/Punishment'], resolve)
+    },
+    {
+      path: '/fire',
+      name: 'Fire',
+      component: resolve => require(['@/views/evaluate/Fire'], resolve)
+    },
+    {
+      path: '/supervision',
+      name: 'Supervision',
+      component: resolve => require(['@/views/evaluate/Supervision'], resolve)
     }
   ]
 })

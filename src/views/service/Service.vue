@@ -1,95 +1,97 @@
 <template>
   <div>
     <div class="service">
-      <div style="height:1px;"></div>
-      <div class="serviceTitleTop">
-        <div class="serviceTitle">消防执法服务情况</div>
-        <div class="serviceTitleEng">FIRE LAW ENFORCEMENT SERVICES</div>
+      <div class="serviceFrame">
+        <div style="height:1px;"></div>
+        <div class="serviceTitleTop">
+          <div class="serviceTitle">消防执法服务情况</div>
+          <div class="serviceTitleEng">FIRE LAW ENFORCEMENT SERVICES</div>
+        </div>
+        <van-form label-width="2.6rem" :model="record" class="serviceVanForm">
+          <van-field v-model="record.company" label-align='center' center clickable readonly placeholder="选择单位" @click="showPicker = true">
+            <div slot='label' class="serviceFormLabel">
+              <div class="serviceFormLabelZh">执法单位</div>
+              <div class="serviceFormLabelEng">LAW ENFORCEMENT</div>
+            </div>
+            <svg-icon slot="right-icon" style="font-size:0.4rem;color:#dc2418;" icon-class="triangle"></svg-icon>
+          </van-field>
+          <van-popup v-model:show="showPicker" position="bottom">
+            <van-picker :columns="companyList" @cancel="showPicker = false" title="执法单位" show-toolbar @confirm="onConfirm" />
+          </van-popup>
+
+          <van-field v-model="record.personnel" label-align='center' border center clickable readonly placeholder="选择人员" @click="showPickerPersonnel = true">
+            <div slot='label' class="serviceFormLabel">
+              <div class="serviceFormLabelZh">执法人员</div>
+              <div class="serviceFormLabelEng">LAW ENFORCEMENT OFFICIALS</div>
+            </div>
+            <svg-icon slot="right-icon" style="font-size:0.4rem;color:#dc2418;" icon-class="triangle"></svg-icon>
+          </van-field>
+          <van-popup v-model:show="showPickerPersonnel" round position="bottom">
+            <van-picker :columns="officialsList[record.company]" title="执法人员" @cancel="showPickerPersonnel = false" show-toolbar @confirm="onConfirmPersonnel" />
+          </van-popup>
+
+          <van-field v-model="record.time" name="datetimePicker" label-align='center' border center clickable readonly placeholder="执法时间" @click="showPickerTime = true">
+            <div slot='label' class="serviceFormLabel">
+              <div class="serviceFormLabelZh">执法时间</div>
+              <div class="serviceFormLabelEng">LAW ENFORCEMENT TIME</div>
+            </div>
+            <svg-icon slot="right-icon" style="font-size:0.4rem;color:#dc2418;" icon-class="triangle"></svg-icon>
+          </van-field>
+          <van-popup v-model:show="showPickerTime" round position="bottom">
+            <van-datetime-picker type="date" title="执法时间" @confirm="onConfirmTime" @cancel="showPickerTime = false" />
+          </van-popup>
+
+          <van-field v-model="record.coverCompany" label-align='center' center clickable readonly placeholder="选择单位" @click="showPickerCoverCompany = true">
+            <div slot='label' class="serviceFormLabel">
+              <div class="serviceFormLabelZh" style="background-color:#194fa1;">被执法单位</div>
+              <div class="serviceFormLabelEng" style="background-color: #dc2418;">LAW ENFORCEMENT</div>
+            </div>
+            <svg-icon slot="right-icon" style="font-size:0.4rem;color:#dc2418;" icon-class="triangle"></svg-icon>
+          </van-field>
+          <van-popup v-model:show="showPickerCoverCompany" position="bottom">
+            <van-picker :columns="companyList" @cancel="showPickerCoverCompany = false" title="被执法单位" show-toolbar @confirm="onConfirmCoverCompany" />
+          </van-popup>
+
+          <van-field v-model="record.name" label-align='center' center>
+            <div slot='label' class="serviceFormLabel">
+              <div class="serviceFormLabelZh" style="background-color:#194fa1;">联系人</div>
+              <div class="serviceFormLabelEng" style="background-color: #dc2418;">THE CONTACT</div>
+            </div>
+          </van-field>
+
+          <van-field v-model="record.phone" label-align='center' center>
+            <div slot='label' class="serviceFormLabel">
+              <div class="serviceFormLabelZh" style="background-color:#194fa1;">联系电话</div>
+              <div class="serviceFormLabelEng" style="background-color: #dc2418;">CONTACT PHONE NUMBER</div>
+            </div>
+          </van-field>
+
+          <van-field v-model="record.context" label-align='center' center clickable readonly placeholder="选择执法内容" @click="showPickerContext = true">
+            <div slot='label' class="serviceFormLabel">
+              <div class="serviceFormLabelZh" style="background-color:#194fa1;">执法内容</div>
+              <div class="serviceFormLabelEng" style="background-color: #dc2418;">LAW ENFORCEMENT CONTENT</div>
+            </div>
+            <svg-icon slot="right-icon" style="font-size:0.4rem;color:#dc2418;" icon-class="triangle"></svg-icon>
+          </van-field>
+          <van-popup v-model:show="showPickerContext" position="bottom">
+            <van-picker :columns="contextList" @cancel="showPickerCoverCompany = false" title="执法内容" ref="contextPicker" show-toolbar @confirm="onConfirmContext" />
+          </van-popup>
+
+        </van-form>
+        <div class="serviceTitleTop" style="margin-top: 3%;margin-bottom: 3%;">
+          <div class="serviceTitle" style="text-indent: 0.45rem;letter-spacing: 0.45rem;">综合评价</div>
+          <div class="serviceTitleEng" style="line-height: 1;text-indent: 0.22rem;letter-spacing: 0.22rem;">COMPREHENSIVE</div>
+          <div class="serviceTitleEng" style="margin-top: 0;line-height: 1;text-indent: .22rem;letter-spacing: 0.22rem;">EVALUATION OF</div>
+        </div>
+        <div class='serviceEvaluation'>THE FIRE RESCUE</div>
+        <div class="serviceEvaluationButton">
+          <van-button type="primary" @click="serverEvaluationClick('好')" round class="serviceEvaluationButtonBlue">好</van-button>
+          <van-button type="primary" @click="serverEvaluationClick('较好')" round class="serviceEvaluationButtonBlue">较好</van-button>
+          <van-button type="primary" @click="serverEvaluationClick('一般')" round class="serviceEvaluationButtonRed">一般</van-button>
+          <van-button type="primary" @click="serverEvaluationClick('差')" round class="serviceEvaluationButtonRed">差</van-button>
+        </div>
+        <div class="serviceEvaluationContent">总体评价分为“好、较好、一般、差”四个档次，如填选“好、较好”档，即完成此次评价：如填选“一般、差”档，需对执法情况进行进一步问卷调查。</div>
       </div>
-      <van-form label-width="2.6rem" :model="record">
-        <van-field v-model="record.company" label-align='center' center clickable readonly placeholder="选择单位" @click="showPicker = true">
-          <div slot='label' class="serviceFormLabel">
-            <div class="serviceFormLabelZh">执法单位</div>
-            <div class="serviceFormLabelEng">LAW ENFORCEMENT</div>
-          </div>
-          <svg-icon slot="right-icon" style="font-size:0.4rem;color:#dc2418;" icon-class="triangle"></svg-icon>
-        </van-field>
-        <van-popup v-model:show="showPicker" position="bottom">
-          <van-picker :columns="companyList" @cancel="showPicker = false" title="执法单位" show-toolbar @confirm="onConfirm" />
-        </van-popup>
-
-        <van-field v-model="record.personnel" label-align='center' border center clickable readonly placeholder="选择人员" @click="showPickerPersonnel = true">
-          <div slot='label' class="serviceFormLabel">
-            <div class="serviceFormLabelZh">执法人员</div>
-            <div class="serviceFormLabelEng">LAW ENFORCEMENT OFFICIALS</div>
-          </div>
-          <svg-icon slot="right-icon" style="font-size:0.4rem;color:#dc2418;" icon-class="triangle"></svg-icon>
-        </van-field>
-        <van-popup v-model:show="showPickerPersonnel" round position="bottom">
-          <van-picker :columns="officialsList[record.company]" title="执法人员" @cancel="showPickerPersonnel = false" show-toolbar @confirm="onConfirmPersonnel" />
-        </van-popup>
-
-        <van-field v-model="record.time" name="datetimePicker" label-align='center' border center clickable readonly placeholder="执法时间" @click="showPickerTime = true">
-          <div slot='label' class="serviceFormLabel">
-            <div class="serviceFormLabelZh">执法时间</div>
-            <div class="serviceFormLabelEng">LAW ENFORCEMENT TIME</div>
-          </div>
-          <svg-icon slot="right-icon" style="font-size:0.4rem;color:#dc2418;" icon-class="triangle"></svg-icon>
-        </van-field>
-        <van-popup v-model:show="showPickerTime" round position="bottom">
-          <van-datetime-picker type="date" title="执法时间" @confirm="onConfirmTime" @cancel="showPickerTime = false" />
-        </van-popup>
-
-        <van-field v-model="record.coverCompany" label-align='center' center clickable readonly placeholder="选择单位" @click="showPickerCoverCompany = true">
-          <div slot='label' class="serviceFormLabel">
-            <div class="serviceFormLabelZh" style="background-color:#194fa1;">被执法单位</div>
-            <div class="serviceFormLabelEng" style="background-color: #dc2418;">LAW ENFORCEMENT</div>
-          </div>
-          <svg-icon slot="right-icon" style="font-size:0.4rem;color:#dc2418;" icon-class="triangle"></svg-icon>
-        </van-field>
-        <van-popup v-model:show="showPickerCoverCompany" position="bottom">
-          <van-picker :columns="companyList" @cancel="showPickerCoverCompany = false" title="被执法单位" show-toolbar @confirm="onConfirmCoverCompany" />
-        </van-popup>
-
-        <van-field v-model="record.name" label-align='center' center>
-          <div slot='label' class="serviceFormLabel">
-            <div class="serviceFormLabelZh" style="background-color:#194fa1;">联系人</div>
-            <div class="serviceFormLabelEng" style="background-color: #dc2418;">THE CONTACT</div>
-          </div>
-        </van-field>
-
-        <van-field v-model="record.phone" label-align='center' center>
-          <div slot='label' class="serviceFormLabel">
-            <div class="serviceFormLabelZh" style="background-color:#194fa1;">联系电话</div>
-            <div class="serviceFormLabelEng" style="background-color: #dc2418;">CONTACT PHONE NUMBER</div>
-          </div>
-        </van-field>
-
-        <van-field v-model="record.context" label-align='center' center clickable readonly placeholder="选择执法内容" @click="showPickerContext = true">
-          <div slot='label' class="serviceFormLabel">
-            <div class="serviceFormLabelZh" style="background-color:#194fa1;">执法内容</div>
-            <div class="serviceFormLabelEng" style="background-color: #dc2418;">LAW ENFORCEMENT CONTENT</div>
-          </div>
-          <svg-icon slot="right-icon" style="font-size:0.4rem;color:#dc2418;" icon-class="triangle"></svg-icon>
-        </van-field>
-        <van-popup v-model:show="showPickerContext" position="bottom">
-          <van-picker :columns="contextList" @cancel="showPickerCoverCompany = false" title="执法内容" show-toolbar @confirm="onConfirmContext" />
-        </van-popup>
-
-      </van-form>
-      <div class="serviceTitleTop" style="margin-top: 3%;margin-bottom: 3%;">
-        <div class="serviceTitle" style="text-indent: 0.45rem;letter-spacing: 0.45rem;">综合评价</div>
-        <div class="serviceTitleEng" style="line-height: 1;text-indent: 0.22rem;letter-spacing: 0.22rem;">COMPREHENSIVE</div>
-        <div class="serviceTitleEng" style="margin-top: 0;line-height: 1;text-indent: .22rem;letter-spacing: 0.22rem;">EVALUATION OF</div>
-      </div>
-      <div class='serviceEvaluation'>THE FIRE RESCUE</div>
-      <div class="serviceEvaluationButton">
-        <van-button type="primary" @click="serverEvaluationClick" round class="serviceEvaluationButtonBlue">好</van-button>
-        <van-button type="primary" @click="serverEvaluationClick" round class="serviceEvaluationButtonBlue">较好</van-button>
-        <van-button type="primary" @click="serverEvaluationClick" round class="serviceEvaluationButtonRed">一般</van-button>
-        <van-button type="primary" @click="serverEvaluationClick" round class="serviceEvaluationButtonRed">差</van-button>
-      </div>
-      <div class="serviceEvaluationContent">总体评价分为“好、较好、一般、差”四个档次，如填选“好、较好”档，即完成此次评价：如填选“一般、差”档，需对执法情况进行进一步问卷调查。</div>
     </div>
   </div>
 </template>
@@ -106,7 +108,10 @@ export default {
         coverCompany: '',
         name: '',
         phone: '',
-        context: ''
+        context: '',
+        radio: [],
+        evaluate: '',
+        text: ''
       },
       showPicker: false,
       showPickerPersonnel: false,
@@ -129,16 +134,37 @@ export default {
         '千山区消防救援大队': ['刘旭', '白博'],
         '5钢都消防救援大队': ['王德阳', '王喆']
       },
-      contextList: ['行政许可', '行政处罚', '火灾调查', '监督检查']
+      contextList: ['行政许可', '行政处罚', '火灾调查', '监督检查'],
+      contextPushList: {
+        '行政许可': 'licensing',
+        '行政处罚': 'punishment',
+        '火灾调查': 'fire',
+        '监督检查': 'supervision'
+      }
     }
   },
-  methods: {
-    serverEvaluationClick (event) {
-      let target = event.target
-      if (target.nodeName === 'I' || target.nodeName === 'SPAN') {
-        target = event.target.parentNode
+  created () {
+    if (this.$store.getters.fromData) {
+      this.record = Object.assign(this.record, this.$store.getters.fromData)
+    }
+    this.$nextTick(() => {
+      console.log(this.$refs['contextPicker'])
+      if (this.record.context) {
+        this.$refs['contextPicker'].setValues([this.record.context])
       }
-      target.blur()
+    })
+  },
+  methods: {
+    serverEvaluationClick (data) {
+      if (this.record.context) {
+        this.record.evaluate = data
+        this.$store.dispatch('user/setFromData', this.record)
+        this.$router.push({
+          path: '/' + this.contextPushList[this.record.context]
+        })
+      } else {
+        this.$notify({ type: 'danger', message: '未选择执法内容' })
+      }
     },
     onConfirm (value) {
       this.record.company = value
@@ -174,10 +200,13 @@ export default {
 }
 .service {
   position: relative;
-  height: 100vh;
   width: 100%;
-  background: url("../../assets/img/serviceBack.png") no-repeat fixed;
-  background-size: 100% 100vh;
+  min-height: 100vh;
+  background: url("../../assets/img/serviceBack.png");
+  background-size: 100% 100%;
+}
+.serviceFrame {
+  padding: 0 0.7rem;
 }
 .imageLogo {
   position: absolute;
@@ -195,7 +224,6 @@ export default {
   color: #dc2418;
   font-size: 0.9rem;
   font-family: Source-Han-Serif-CN-Bold;
-  text-indent: 0.09rem;
   letter-spacing: 0.09rem;
 }
 .serviceTitleEng {
@@ -236,7 +264,6 @@ export default {
     #194fa1 100%
   );
   text-align: right;
-  margin: 0 0.7rem;
   padding: 0 0.09rem;
   font-size: 0.2rem;
   line-height: 2;
@@ -272,7 +299,6 @@ export default {
 .serviceEvaluationContent {
   margin-top: 3%;
   font-size: 0.3rem;
-  padding: 0 0.7rem;
   text-indent: 0.8rem;
   line-height: 1.8;
 }
@@ -282,40 +308,27 @@ export default {
 </style>
 
 <style lang="scss">
-// .van-field {
-//   margin-bottom: 0.05rem;
-// }
-// input::placeholder {
-//   /* Firefox, Chrome, Opera */
-//   letter-spacing: 0.1rem;
-//   text-align: right;
-//   color: #797979;
-// }
-// .el-input__prefix {
-//   display: none;
-// }
-// .el-input--prefix .el-input__inner {
-//   padding-left: 15px;
-// }
-// .el-input__inner {
-//   background-color: #edeeee;
-//   border: 1px solid #a2a3a3;
-// }
-// .van-field__label {
-//   margin-right: 0.33rem;
-// }
-.van-field__value {
-  background-color: #edeeee;
-  border: 1px solid #a2a3a3;
-  padding: 0.03rem 0.2rem 0.03rem 0.4rem;
-  border-radius: 0.1rem;
-  // height: 0.75rem;
-  // font-size: 0.35rem;
-}
-.van-cell::after {
-  display: none;
-}
-.van-cell {
-  padding: 0.1rem 0.7rem !important;
+.serviceVanForm {
+  .van-field__value {
+    background-color: #edeeee;
+    border: 0.03rem solid #a2a3a3;
+    padding: 0.03rem 0.2rem 0.03rem 0.4rem;
+    border-radius: 0.1rem;
+    // height: 0.75rem;
+    // font-size: 0.35rem;
+  }
+  .van-cell::after {
+    display: none;
+  }
+  .van-cell {
+    padding: 0.1rem 0rem !important;
+    background-color: transparent;
+  }
+  input::placeholder {
+    /* Firefox, Chrome, Opera */
+    letter-spacing: 0.1rem;
+    text-align: right;
+    color: #797979;
+  }
 }
 </style>

@@ -3,6 +3,7 @@
 import Vue from 'vue'
 import 'normalize.css/normalize.css' // A modern alternative to CSS resets
 import App from './App'
+import store from './store'
 import router from './router'
 
 // import ElementUI from 'element-ui'
@@ -27,6 +28,7 @@ Vue.use(Vant)
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })
