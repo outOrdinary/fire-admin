@@ -102,16 +102,16 @@ export default {
   data () {
     return {
       record: {
-        company: '',
-        personnel: '',
-        time: null,
-        coverCompany: '',
-        name: '',
-        phone: '',
-        context: '',
-        radio: [],
-        evaluate: '',
-        text: ''
+        company: '', // 执法单位
+        personnel: '', // 执法人员
+        time: null, // 执法时间
+        coverCompany: '', // 被执法单位
+        name: '', // 联系人
+        phone: '', // 联系电话
+        context: '', // 执法内容
+        radio: [], // 选项
+        evaluate: '', // 好 较好 一般 差
+        text: '' // 评价
       },
       showPicker: false,
       showPickerPersonnel: false,

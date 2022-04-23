@@ -58,6 +58,11 @@ export default new Router({
       path: '/supervision',
       name: 'Supervision',
       component: resolve => require(['@/views/evaluate/Supervision'], resolve)
+    },
+    {
+      path: '/lastPage',
+      name: 'LastPage',
+      component: resolve => require(['@/views/lastPage/LastPage'], resolve)
     }
   ]
 })

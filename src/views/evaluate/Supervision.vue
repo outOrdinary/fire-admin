@@ -112,7 +112,11 @@ export default {
     gobackClick () {
       this.$router.goBack()
     },
-    submitClick () { }
+    submitClick () {
+      this.$router.push({
+        path: '/lastPage'
+      })
+    }
   }
 }
 </script>
