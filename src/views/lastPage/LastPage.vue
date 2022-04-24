@@ -4,14 +4,16 @@
 
     </div>
     <div class="homeBottom">
-      <div style="text-indent:0.9rem;">
-        我们将认真阅读反馈内容，并对反映的问题进行调查、核实和处理，对实名反应问题的将进行情况反馈。
-      </div>
-      <div style="text-indent:0.9rem;">
-        感谢您的支持与参与，我们将不断加强和改进消防监督执法工作，为经济发展和人民群众提供更加优质的消防安全服务。
-      </div>
-      <div style="text-align: right;margin-top:1rem;">
-        辽宁省消防救援总队纪委
+      <div>
+        <div style="text-indent:0.9rem;">
+          我们将认真阅读反馈内容，并对反映的问题进行调查、核实和处理，对实名反应问题的将进行情况反馈。
+        </div>
+        <div style="text-indent:0.9rem;">
+          感谢您的支持与参与，我们将不断加强和改进消防监督执法工作，为经济发展和人民群众提供更加优质的消防安全服务。
+        </div>
+        <div style="text-align: right;margin-top:1rem;">
+          辽宁省消防救援总队纪委
+        </div>
       </div>
     </div>
   </div>
@@ -45,7 +47,6 @@ export default {
   width: 100%;
 }
 .homeTop {
-  background-color: #dc2418;
   width: 100%;
   height: 50vh;
   color: #efd924;
@@ -66,5 +67,8 @@ export default {
   font-family: PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
   background: url("../../assets/img/lastDown.png");
   background-size: 100% 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

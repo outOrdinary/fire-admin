@@ -204,7 +204,7 @@ export default {
   justify-content: center;
 }
 .licensingCheckboxFalseWithin {
-  background-color: #194fa1;
+  background-color: #fff;
   border: 0.05rem solid #dc2418;
   position: relative;
   border-radius: 50%;
@@ -213,25 +213,55 @@ export default {
 }
 .licensingCheckboxFalseWithin:after {
   content: "";
+  border: 0.05rem solid #194fa1;
   display: block;
-  width: 0.45rem;
-  height: 0.45rem;
+  width: 0.52rem;
+  height: 0.52rem;
   border-radius: 50%;
   background-color: #fff;
-  position: relative;
+  position: absolute;
   z-index: 1006;
-  top: -webkit-calc(50% - 0.225rem);
-  top: calc(50% - 0.225rem);
-  left: -webkit-calc(50% - 0.225rem);
-  left: calc(50% - 0.225rem);
+  top: -webkit-calc(50% - 0.26rem);
+  top: calc(50% - 0.26rem);
+  left: -webkit-calc(50% - 0.26rem);
+  left: calc(50% - 0.26rem);
 }
 .licensingCheckboxTrueWithin {
-  background-color: #194fa1;
+  background-color: #fff;
   border: 0.05rem solid #dc2418;
   position: relative;
   border-radius: 50%;
   width: 0.65rem;
   height: 0.65rem;
+}
+.licensingCheckboxTrueWithin:after {
+  content: "";
+  border: 0.05rem solid #194fa1;
+  display: block;
+  width: 0.52rem;
+  height: 0.52rem;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  z-index: 1006;
+  top: -webkit-calc(50% - 0.26rem);
+  top: calc(50% - 0.26rem);
+  left: -webkit-calc(50% - 0.26rem);
+  left: calc(50% - 0.26rem);
+}
+.licensingCheckboxTrueWithin:before {
+  content: "";
+  display: block;
+  width: 0.36rem;
+  height: 0.36rem;
+  border-radius: 50%;
+  background-color: #dc2418;
+  position: absolute;
+  z-index: 1007;
+  top: -webkit-calc(50% - 0.18rem);
+  top: calc(50% - 0.18rem);
+  left: -webkit-calc(50% - 0.18rem);
+  left: calc(50% - 0.18rem);
 }
 .LicensingButton {
   height: 0.8rem;
