@@ -66,10 +66,10 @@
             存在吃、拿、卡、要、乱拉赞助等违规行为；
           </van-checkbox>
         </van-checkbox-group>
-        <div class="licensingTitleTop" v-if="['一般','差'].includes(record.evaluate)" style="margin-top: 3%;">
+        <div class="licensingTitleTop" style="margin-top: 3%;">
           <div class="licensingSmallTitle">其他需要反映的执法问题</div>
         </div>
-        <van-field v-model="record.text" v-if="['一般','差'].includes(record.evaluate)" style="margin:0.2rem 0;" placeholder="点击编辑文字..." rows="4" type="textarea" />
+        <van-field v-model="record.text" style="margin:0.2rem 0;" placeholder="点击编辑文字..." rows="4" type="textarea" />
         <div class='licensingEvaluation'>THE FIRE RESCUE</div>
         <van-button class="LicensingButton" icon-position='left' @click="gobackClick">
           <span style="font-size:0.45rem;margin:0 .4rem 0 .2rem;">返回</span>

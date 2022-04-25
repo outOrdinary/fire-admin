@@ -54,7 +54,8 @@ export default {
   font-family: Source-Han-Serif-CN-Bold, Microsoft YaHei;
   letter-spacing: -1px;
   background: url("../../assets/img/lastUp.png");
-  background-size: 100% 100%;
+  background-size: cover;
+  /* background-size: 100% 100%; */
 }
 .homeBottom {
   width: 100%;
