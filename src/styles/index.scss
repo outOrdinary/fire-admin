@@ -82,3 +82,9 @@ div:focus {
   background-color: #edeeee;
   border: 0.03rem solid #a2a3a3;
 }
+
+div,
+span,
+p {
+  caret-color: transparent;
+}

@@ -41,16 +41,12 @@
             <van-datetime-picker type="date" title="执法时间" @confirm="onConfirmTime" @cancel="showPickerTime = false" />
           </van-popup>
 
-          <van-field v-model="record.coverCompany" label-align='center' center clickable readonly placeholder="选择单位" @click="showPickerCoverCompany = true">
+          <van-field v-model="record.coverCompany" label-align='center' center>
             <div slot='label' class="serviceFormLabel">
               <div class="serviceFormLabelZh" style="background-color:#194fa1;">被执法单位</div>
               <div class="serviceFormLabelEng" style="background-color: #dc2418;">LAW ENFORCEMENT</div>
             </div>
-            <svg-icon slot="right-icon" style="font-size:0.4rem;color:#dc2418;" icon-class="triangle"></svg-icon>
           </van-field>
-          <van-popup v-model:show="showPickerCoverCompany" position="bottom">
-            <van-picker :columns="companyList" @cancel="showPickerCoverCompany = false" title="被执法单位" show-toolbar @confirm="onConfirmCoverCompany" />
-          </van-popup>
 
           <van-field v-model="record.name" label-align='center' center>
             <div slot='label' class="serviceFormLabel">
@@ -74,7 +70,7 @@
             <svg-icon slot="right-icon" style="font-size:0.4rem;color:#dc2418;" icon-class="triangle"></svg-icon>
           </van-field>
           <van-popup v-model:show="showPickerContext" position="bottom">
-            <van-picker :columns="contextList" @cancel="showPickerCoverCompany = false" title="执法内容" ref="contextPicker" show-toolbar @confirm="onConfirmContext" />
+            <van-picker :columns="contextList" @cancel="showPickerContext = false" title="执法内容" ref="contextPicker" show-toolbar @confirm="onConfirmContext" />
           </van-popup>
 
         </van-form>
@@ -116,9 +112,8 @@ export default {
       showPicker: false,
       showPickerPersonnel: false,
       showPickerTime: false,
-      showPickerCoverCompany: false,
       showPickerContext: false,
-      companyList: ['铁东区消防救援大队', '铁西区消防救援大队', '立山区消防救援大队', '千山区消防救援大队', '钢都消防救援大队'],
+      companyList: ['特勤大队', '铁东大队', '铁西大队', '立山大队', '千山大队', '海城大队', '台安大队', '岫岩大队', '高新大队', '钢都大队', '鞍钢南部矿区大队'],
       // companyList: {
       //   '1': { value: '铁东区消防救援大队', officialsList: ['江洪飞', '李秋辰', '刘光宇'] },
       //   '2': { value: '铁西区消防救援大队', officialsList: ['刚强', '舒奎彪', '原泉'] },
@@ -128,11 +123,17 @@ export default {
       // },
       officialsList: {
         '': [],
-        '铁东区消防救援大队': ['江洪飞', '李秋辰', '刘光宇'],
-        '铁西区消防救援大队': ['刚强', '舒奎彪', '原泉'],
-        '立山区消防救援大队': ['王志辉', '周彦莹', '张文博'],
-        '千山区消防救援大队': ['刘旭', '白博'],
-        '5钢都消防救援大队': ['王德阳', '王喆']
+        '特勤大队': ['刘本成', '刘客', '尹猛', '王辉', '张琦'],
+        '铁东大队': ['江洪飞', '李秋辰', '谷昀宾', '丛舒畅', '于慧鸣', '刘光宇', '李雪松', '孟美杉', '杨勇'],
+        '铁西大队': ['刚强', '舒奎彪', '刘朝和', '陈庆波', '崔荫直', '刘孝国', '原泉', '王晓亮', '高歌'],
+        '立山大队': ['王志辉', '周彦莹', '赵志萍', '张文博', '魏兴', '梁冰', '姜志伟', '张兵'],
+        '千山大队': ['刘旭', '白博', '鞠洪涛', '尹雨萌', '祁海昊', '黄笑晨', '纪元'],
+        '海城大队': ['郑辉', '王震', '马海青', '张亮', '马辉', '王安德', '尚尔旭', '顾恩明', '孙戈'],
+        '台安大队': ['刘强', '温笑冬', '李成业', '殷山', '孝文广', '冯国华'],
+        '岫岩大队': ['于子洋', '王绍楠', '刘鹏飞', '曲哲', '吕海东'],
+        '高新大队': ['薄立矗', '田长杰', '姜佳男', '蔡东宸', '秦纬纬', '赵晨宇', '刘嘉妮'],
+        '钢都大队': ['王德阳', '王喆', '王璨', '马睿阔', '徐洋', '祖晔', '王延峰'],
+        '鞍钢南部矿区大队': ['徐峰', '张博', '徐以文', '王建宇', '苗一舟']
       },
       contextList: ['行政许可', '行政处罚', '火灾调查', '监督检查'],
       contextPushList: {
@@ -148,7 +149,7 @@ export default {
       this.record = Object.assign(this.record, this.$store.getters.fromData)
     }
     this.$nextTick(() => {
-      console.log(this.$refs['contextPicker'])
+      // console.log(this.$refs['contextPicker'])
       if (this.record.context) {
         this.$refs['contextPicker'].setValues([this.record.context])
       }
@@ -168,6 +169,7 @@ export default {
     },
     onConfirm (value) {
       this.record.company = value
+      this.record.personnel = ''
       this.showPicker = false
     },
     onConfirmPersonnel (value) {
@@ -180,10 +182,6 @@ export default {
       let day = time.getDate()
       this.record.time = year + '年' + month + '月' + day + '日'
       this.showPickerTime = false
-    },
-    onConfirmCoverCompany (value) {
-      this.record.coverCompany = value
-      this.showPickerCoverCompany = false
     },
     onConfirmContext (value) {
       this.record.context = value
