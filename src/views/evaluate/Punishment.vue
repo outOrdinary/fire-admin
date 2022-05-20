@@ -66,10 +66,10 @@
             存在吃、拿、卡、要、乱拉赞助等违规行为。
           </van-checkbox>
         </van-checkbox-group>
-        <div class="licensingTitleTop" v-if="['一般','差'].includes(record.evaluate)" style="margin-top: 3%;">
+        <div class="licensingTitleTop" style="margin-top: 3%;">
           <div class="licensingSmallTitle">其他需要反映的执法问题</div>
         </div>
-        <van-field v-model="record.text" v-if="['一般','差'].includes(record.evaluate)" style="margin:0.2rem 0;" placeholder="点击编辑文字..." rows="4" type="textarea" />
+        <van-field v-model="record.text" style="margin:0.2rem 0;" placeholder="点击编辑文字..." rows="4" type="textarea" />
         <div class='licensingEvaluation'>THE FIRE RESCUE</div>
         <van-button class="LicensingButton" icon-position='left' @click="gobackClick">
           <span style="font-size:0.45rem;margin:0 .4rem 0 .2rem;">返回</span>
@@ -204,7 +204,7 @@ export default {
   justify-content: center;
 }
 .licensingCheckboxFalseWithin {
-  background-color: #194fa1;
+  background-color: #fff;
   border: 0.05rem solid #dc2418;
   position: relative;
   border-radius: 50%;
@@ -213,25 +213,55 @@ export default {
 }
 .licensingCheckboxFalseWithin:after {
   content: "";
+  border: 0.05rem solid #194fa1;
   display: block;
-  width: 0.45rem;
-  height: 0.45rem;
+  width: 0.52rem;
+  height: 0.52rem;
   border-radius: 50%;
   background-color: #fff;
-  position: relative;
+  position: absolute;
   z-index: 1006;
-  top: -webkit-calc(50% - 0.225rem);
-  top: calc(50% - 0.225rem);
-  left: -webkit-calc(50% - 0.225rem);
-  left: calc(50% - 0.225rem);
+  top: -webkit-calc(50% - 0.26rem);
+  top: calc(50% - 0.26rem);
+  left: -webkit-calc(50% - 0.26rem);
+  left: calc(50% - 0.26rem);
 }
 .licensingCheckboxTrueWithin {
-  background-color: #194fa1;
+  background-color: #fff;
   border: 0.05rem solid #dc2418;
   position: relative;
   border-radius: 50%;
   width: 0.65rem;
   height: 0.65rem;
+}
+.licensingCheckboxTrueWithin:after {
+  content: "";
+  border: 0.05rem solid #194fa1;
+  display: block;
+  width: 0.52rem;
+  height: 0.52rem;
+  border-radius: 50%;
+  background-color: #fff;
+  position: absolute;
+  z-index: 1006;
+  top: -webkit-calc(50% - 0.26rem);
+  top: calc(50% - 0.26rem);
+  left: -webkit-calc(50% - 0.26rem);
+  left: calc(50% - 0.26rem);
+}
+.licensingCheckboxTrueWithin:before {
+  content: "";
+  display: block;
+  width: 0.36rem;
+  height: 0.36rem;
+  border-radius: 50%;
+  background-color: #dc2418;
+  position: absolute;
+  z-index: 1007;
+  top: -webkit-calc(50% - 0.18rem);
+  top: calc(50% - 0.18rem);
+  left: -webkit-calc(50% - 0.18rem);
+  left: calc(50% - 0.18rem);
 }
 .LicensingButton {
   height: 0.8rem;

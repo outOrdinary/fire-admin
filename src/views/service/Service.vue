@@ -81,8 +81,8 @@
         </div>
         <div class='serviceEvaluation'>THE FIRE RESCUE</div>
         <div class="serviceEvaluationButton">
-          <van-button type="primary" @click="serverEvaluationClick('好')" round class="serviceEvaluationButtonBlue">好</van-button>
-          <van-button type="primary" @click="serverEvaluationClick('较好')" round class="serviceEvaluationButtonBlue">较好</van-button>
+          <van-button type="primary" @click="serverOverClick('好')" round class="serviceEvaluationButtonBlue">好</van-button>
+          <van-button type="primary" @click="serverOverClick('较好')" round class="serviceEvaluationButtonBlue">较好</van-button>
           <van-button type="primary" @click="serverEvaluationClick('一般')" round class="serviceEvaluationButtonRed">一般</van-button>
           <van-button type="primary" @click="serverEvaluationClick('差')" round class="serviceEvaluationButtonRed">差</van-button>
         </div>
@@ -114,6 +114,7 @@ export default {
       showPickerTime: false,
       showPickerContext: false,
       companyList: ['特勤大队', '铁东大队', '铁西大队', '立山大队', '千山大队', '海城大队', '台安大队', '岫岩大队', '高新大队', '钢都大队', '鞍钢南部矿区大队'],
+<<<<<<< HEAD
       // companyList: {
       //   '1': { value: '铁东区消防救援大队', officialsList: ['江洪飞', '李秋辰', '刘光宇'] },
       //   '2': { value: '铁西区消防救援大队', officialsList: ['刚强', '舒奎彪', '原泉'] },
@@ -121,6 +122,8 @@ export default {
       //   '4': { value: '千山区消防救援大队', officialsList: ['刘旭', '白博'] },
       //   '5': { value: '钢都消防救援大队', officialsList: ['王德阳', '王喆'] }
       // },
+=======
+>>>>>>> 98308cc42253409e965621c20ce70bbd1b929aec
       officialsList: {
         '': [],
         '特勤大队': ['刘本成', '刘客', '尹猛', '王辉', '张琦'],
@@ -149,11 +152,13 @@ export default {
       this.record = Object.assign(this.record, this.$store.getters.fromData)
     }
     this.$nextTick(() => {
-      // console.log(this.$refs['contextPicker'])
       if (this.record.context) {
         this.$refs['contextPicker'].setValues([this.record.context])
       }
     })
+  },
+  beforeDestroy () {
+    this.$store.dispatch('user/setFromData', this.record)
   },
   methods: {
     serverEvaluationClick (data) {
@@ -162,6 +167,17 @@ export default {
         this.$store.dispatch('user/setFromData', this.record)
         this.$router.push({
           path: '/' + this.contextPushList[this.record.context]
+        })
+      } else {
+        this.$notify({ type: 'danger', message: '未选择执法内容' })
+      }
+    },
+    serverOverClick (data) {
+      if (this.record.context) {
+        this.record.evaluate = data
+        this.$store.dispatch('user/setFromData', this.record)
+        this.$router.push({
+          path: '/lastPage'
         })
       } else {
         this.$notify({ type: 'danger', message: '未选择执法内容' })
